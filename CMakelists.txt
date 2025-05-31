@@ -1,12 +1,17 @@
 cmake_minimum_required(VERSION 3.14)
 project(video-encode-decode C CXX)
+
 set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(lib/glfw)
+add_definitions(-DGL_SILENCE_DEPRECATION)
+
 add_executable(video-encode-decode src/main.cpp)
+
 if (APPLE)
     list(APPEND EXTRA_LIBS
         "-framework OpenGL"
        )
 endif()
+
 target_link_libraries(video-encode-decode glfw ${EXTRA_LIBS})
